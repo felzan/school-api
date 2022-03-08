@@ -1,8 +1,16 @@
+server:
+  port: 8080 # A porta q a API vai subir, as rotas vao ficar disponiveis em http://localhost:8080
 spring:
-  datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
+  datasource: # configuracao do banco de dados
+    url: jdbc:h2:mem:test # a URL do banco de dados
+    username: sa # usuario do banco de dados
     password: password
-    driverClassName: org.h2.Driver
+    driverClassName: org.h2.Driver # driver, n sei oq faz direito
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect # diz pro spring q estou usando um banco de dados tipo H2
+    # q eh um banco de dados em memoria. o proprio Spring q vai configurar tudo
+    hibernate:
+      ddl-auto: create-drop # vai CRIAR o banco vazio toda vez q subir a aplicacao, vai PERDER todos os dados se fechar a API
+  h2:
+    console:
+      enabled: true # se estiver habilitado, da pra abrir uma pagina no navegador pra ver as coisas do banco de dados
